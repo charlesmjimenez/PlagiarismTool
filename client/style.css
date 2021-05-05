@@ -1,0 +1,55 @@
+#googleLogIn{
+    display: none;
+}
+
+#homePage{
+    display: none;
+}
+
+#drop-zone{
+    max-width: 200px;
+    height: 200px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 500;
+    font-size: 20px;
+    cursor: pointer;
+    color: #cccccc;
+    border: 4px dashed #009578;
+    border-radius: 10px;
+}
+/*CHANGE COLOUR DONT FORGET*/
+
+#drop-zone-over{
+    border-style: solid;
+}
+
+#drop-zone-input{
+    display: block;
+}
+
+.drop-zone-image{
+    width: 100%;
+    height: 100%;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone-image::after{
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+    
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <meta name="google-signin-client_id" content="434869751292-302821ee2ms8cm32lf4rjm0ol2u72ong.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <title>Plagiarism Detection Tool</title>
+</head>
+<body>
+  <div>
+    <h1>Plagiarism Detection Tool</h1>
+  </div>
+
+  <div id="googleLogIn">
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  </div>
+
+  <div id="homePage">
+    <p id ="name"></p>
+    <p id ="email"></p>
+    <img id ="URL"></img>
+    <a href="#" onclick="signOut();">Sign out</a>
+    <div id="drop-zone" ondrop="onDrop(event);">
+      <b class="drop-zone-text">Drop files here or click to upload</b>
+      <input type="file" name="fileName" id ="drop-zone-input" onchange="loadFile()"/>
+    </div>
+  </div>
+
+
+  <script src="/client.js"></script>
+</body>
+</html>
