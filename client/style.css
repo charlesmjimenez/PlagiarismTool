@@ -4,9 +4,62 @@
 
 #homePage{
     display: none;
+    position: relative
+}
+
+
+/* #name {} */
+
+#heading {
+    left: 0;
+    line-height: 200px;
+    margin-top: -100px;
+    position: absolute;
+    text-align: center;
+    top: 0px, 100%;
+    width: 100%;
+}
+
+#url {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.text{
+    font-family: 'Shadows Into Light', cursive;
+}
+
+label{
+    display: inline-block;
+    background-color: grey;
+    color: white;
+    padding: 0.5rem;
+    font-family:sans-serif;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: center;
+    width: 80px;
+    height: 10px;
+    font-size: 10px;
+    text-align: center;
+}
+
+#file-content {
+    position: absolute;
+    margin-top: center;
+    font-size: 20px;
+    font-family: sans-serif;
+    left: 50%;
+    margin-left: -125px;
+    bottom: 50%;
+    margin-bottom: -350px;
 }
 
 #drop-zone{
+    position: absolute;
+    left: 50%;
+    margin-left: -125px;
     max-width: 200px;
     height: 200px;
     padding: 25px;
@@ -15,7 +68,7 @@
     justify-content: center;
     text-align: center;
     font-family:Georgia, 'Times New Roman', Times, serif;
-    font-size: 500;
+    font-size: 500px;
     font-size: 20px;
     cursor: pointer;
     color: #cccccc;
@@ -24,23 +77,27 @@
 }
 /*CHANGE COLOUR DONT FORGET*/
 
-#drop-zone-over{
-    border-style: solid;
-}
+/* #drop-zone-input{
+    display: inline-block;
+    background-color: grey;
+    color: white;
+    padding: 0.5rem;
+    padding: 25px;
+    font-family:sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+} */
 
-#drop-zone-input{
-    display: block;
-}
-
-.drop-zone-image{
+/* .drop-zone-image{
     width: 100%;
     height: 100%;
     background-color: #cccccc;
     background-size: cover;
     position: relative;
-}
+} */
 
-.drop-zone-image::after{
+/* .drop-zone-image::after{
     content: attr(data-label);
     position: absolute;
     bottom: 0;
@@ -52,4 +109,4 @@
     font-size: 14px;
     text-align: center;
     
-}
+} */

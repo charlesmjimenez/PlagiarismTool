@@ -5,28 +5,35 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor&display=swap" rel="stylesheet">
   <meta name="google-signin-client_id" content="434869751292-302821ee2ms8cm32lf4rjm0ol2u72ong.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <title>Plagiarism Detection Tool</title>
 </head>
 <body>
+
+<!-- Shows heading throughout -->
   <div>
-    <h1>Plagiarism Detection Tool</h1>
+    <h1 id="heading">Plagiarism Detection Tool</h1>
   </div>
 
+<!-- Log in Container -->
   <div id="googleLogIn">
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
   </div>
 
+<!-- Home Page Container -->
   <div id="homePage">
     <p id ="name"></p>
     <p id ="email"></p>
-    <img id ="URL"></img>
+    <img id ="url"></img>
     <a href="#" onclick="signOut();">Sign out</a>
     <div id="drop-zone" ondrop="onDrop(event);">
-      <b class="drop-zone-text">Drop files here or click to upload</b>
-      <input type="file" name="fileName" id ="drop-zone-input" onchange="loadFile()"/>
+      <b class="drop-zone-text">Drop files here or</b>
+      <input type="file" id="drop-zone-input" onchange="loadFile()" hidden/>
+      <label for="drop-zone-input">Upload File</label>
     </div>
+    <span id="file-content">Currently no text</span>
   </div>
 
 

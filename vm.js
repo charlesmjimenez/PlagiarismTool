@@ -1,8 +1,0 @@
-export default {
-  host: 'up933827@up933827.myvm.port.ac.uk',
-  database: 'pdtdb',
-  password: 'v8fjvk7C',
-  port: 5432,
-  statement_timeout: 5000,
-
-};
