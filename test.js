@@ -1,2 +1,0 @@
-const bana = 3;
-

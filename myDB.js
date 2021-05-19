@@ -9,27 +9,33 @@ sql.on('error', (err) => {
   sql.end();
 });
 
-export async function listFiles() {
-  const q = 'SELECT file_path FROM files';
+export async function listFileConts() {
+  const q = 'SELECT file_name, file_path, file_similarity FROM files';
   const result = await sql.query(q);
   return result.rows;
 }
 
-export async function listFileType() {
-  const q = 'SELECT file_type FROM files';
+export async function findName() {
+  const q = 'SELECT file_name FROM files';
   const result = await sql.query(q);
   return result.rows;
 }
 
-export async function findFiles(id) {
-  const q = 'SELECT file_path FROM files WHERE file_id = $1;';
-  const result = await sql.query(q, [id]);
+export async function findPath() {
+  const q = 'SELECT file_path, file_name, file_similarity FROM files';
+  const result = await sql.query(q);
   return result.rows;
 }
 
-export async function addFiles(path, type) {
-  const q = 'INSERT INTO files(file_path, file_type) VALUES ($1, $2);';
-  await sql.query(q, [path, type]);
+export async function findSimilarity() {
+  const q = 'SELECT file_similarity FROM files';
+  const result = await sql.query(q);
+  return result.rows;
+}
 
-  return listFiles();
+export async function addFiles(data) {
+  const q = 'INSERT INTO files(file_name, file_path, file_similarity) VALUES ($1, $2, $3);';
+  await sql.query(q, [data[0], data[1], data[2]]);
+
+  return listFileConts();
 }

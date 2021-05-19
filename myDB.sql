@@ -4,9 +4,7 @@ DROP TABLE IF EXISTS files;
 
 CREATE TABLE files (
     file_id SERIAL,
+    file_name VARCHAR(100),
     file_path VARCHAR(200),
-    file_type VARCHAR(10)
+    file_similarity VARCHAR(5)
 );
-
-INSERT INTO files (file_path, file_type) VALUES
-('C:/Uni_Work/CW', 'java');

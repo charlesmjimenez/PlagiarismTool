@@ -28,15 +28,27 @@
     <p id ="email"></p>
     <img id ="url"></img>
     <a href="#" onclick="signOut();">Sign out</a>
+
+    <!-- Drag, Drop, Click to upload files -->
     <div id="drop-zone" ondrop="onDrop(event);">
-      <b class="drop-zone-text">Drop files here or</b>
-      <input type="file" id="drop-zone-input" onchange="loadFile()" hidden/>
-      <label for="drop-zone-input">Upload File</label>
+      <b id="drop-zone-text">Drop files here or</b>
+      <input id="drop-zone-input" type="file" onchange="onClick(event)"multiple/>
+      <button id="btnupload" type="button" onclick="btnOnClick()">Choose File(s)</button>
     </div>
-    <span id="file-content">Currently no text</span>
-  </div>
+    <span id="file-content"></span>
 
+    <!-- Button for other uses -->
+    <button id="btnTable" onclick="btnOnClick()">Show table</button>
+    <table id="tableCont">
+      <tr>
+        <th>File Name</th>
+        <th>File Path</th>
+        <th>Similarity</th>
+      </tr>
+    </table>
+    
 
-  <script src="/client.js"></script>
+  <script src="./client.js"></script>
+  <script src="./handler.js"></script>
 </body>
 </html>
