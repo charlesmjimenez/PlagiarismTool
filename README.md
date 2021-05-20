@@ -1,9 +1,11 @@
 # WebProgCW
 
-## Plan
-* Create UI
-* Create logic
-* Do CSS later on
+How to run the application
 
-## Aimed at
-* Mainly aimed towards users who are doing essays or marking essays/dissertations - teachers/students
+```shell
+npm run setup
+npm start
+```
+
+If database is not created or has issues, please manually create the database using the SQL commands from myDB.sql file.
+Thank you.
