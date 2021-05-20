@@ -39,6 +39,40 @@ document.querySelector('#drop-zone').addEventListener('drop', () => {
   document.querySelector('#drop-zone').style.border = '4px dashed #800080';
 });
 
-function btnOnClick() {
+function btnClickReport() {
   document.querySelector('#tableCont').style.display = 'block';
+  document.querySelector('#drop-zone').style.display = 'none';
+  document.querySelector('#btnReport').style.display = 'none';
+  document.querySelector('#btnBack').style.display = 'block';
+  document.querySelector('#userText').style.display = 'none';
+  document.querySelector('#btnRefresh').style.display = 'none';
 }
+
+const input = document.querySelector('#btnReport');
+input.addEventListener('click', btnClickReport);
+
+function customOnChange() {
+  const customInp = document.querySelector('#drop-zone-input');
+  const fileChosen = document.querySelector('#file-content');
+  customInp.addEventListener('change', function () {
+    fileChosen.textContent = this.files[0].name;
+  });
+}
+
+function customOnClick() {
+  const customInp = document.querySelector('#btnupload');
+  customInp.addEventListener('click', customOnChange);
+}
+
+customOnClick();
+
+function btnBack() {
+  location.reload();
+}
+
+document.querySelector('#btnBack').addEventListener('click', btnBack);
+
+function refreshBtn() {
+  location.reload();
+}
+document.querySelector('#btnRefresh').addEventListener('click', refreshBtn);

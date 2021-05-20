@@ -1,37 +1,32 @@
-/* eslint-disable space-infix-ops */
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable require-await */
-/* eslint-disable no-empty */
-/* eslint-disable eol-last */
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-unreachable-loop */
 
 import * as myDB from './myDB.js';
 import similarity from 'similarity';
 import fs from 'fs';
-import path from 'path';
 
-async function compareFile(filePath) {
-//   const uploadFile = fs.readdirSync('./upload');
+export async function compareFile(filePath) {
+  const fileOne = fs.readFileSync(filePath, 'utf-8');
   const uploadFile = await myDB.findPath();
-  console.log(uploadFile);
-  const x = path.join('upload', 'hello');
-  console.log(x);
-// //   console.log(filePath);
-// // //   for (let i=0; i<uploadFile.length; i++) {
-// // //     if (filePath === uploadFile[i]) {
-// // //       // const content = fs.readFileSync(filePath, 'utf-8');
-// // //       console.log('file found');
-// // //       break;
-// // //     } else {
-// // //       console.log('File not found');
-// // //     }
-// // //   }
-// // // }
+  const arrSim = [];
+  for (let i = 0; i < uploadFile.length; i++) {
+    const replace = uploadFile[i].file_path.replace(/\\/g, '/');
+    const fileTwo = fs.readFileSync(replace, 'utf-8');
+    const compareSim = similarity(fileOne, fileTwo);
+    const round = compareSim * 100;
+    arrSim.push(round);
+    console.log(round);
+  }
+  console.log(arrSim);
+  const data = {
+    similarity: (largest(arrSim).toFixed(2)).toString() + '%',
+  };
+  return data;
 }
-// compareFile('upload\\7edfc55942eac37c9ea0db0019580a04');
 
-// const x = path.join('hello', 'yo');
-// console.log(x);
-compareFile('lol');
-// console.log('upload/7edfc55942eac37c9ea0db0019580a04');
+function largest(arr) {
+  if (!arr || !arr.length) {
+    return null;
+  } else {
+    return Math.max.apply(Math, arr);
+  }
+}

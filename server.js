@@ -28,21 +28,22 @@ async function getFileConts(req, res) {
 }
 
 async function upload(req, res) {
+  const replaceFile = req.file.path.replace(/\\/g, '/');
   const response = {
     name: req.file.originalname,
-    path: req.file.path.replace(/\\/g, '/'),
+    path: replaceFile,
   };
-  res.json(response);
-  console.log(response);
-  // const files = await myDB.listFileConts();
-  // if (files.length === 0) {
-  //   const addFiles = await myDB.addFiles([req.file.originalname, req.file.path, '0%']);
-  //   res.json(addFiles);
-  // } else {
-  //   const similarity = await compare.compare(req.file.path);
-  //   const getFiles = await myDB.addFiles([req.file.originalname, req.file.path, similarity]);
-  //   res.json(getFiles);
-  // }
+
+  const files = await myDB.listFileConts();
+  if (files.length === 0) {
+    const addFiles = await myDB.addFiles([req.file.originalname, replaceFile, '']);
+    res.json(addFiles);
+  } else {
+    console.log(replaceFile);
+    const similarity = await compare.compareFile(replaceFile);
+    const addFiles = await myDB.addFiles([req.file.originalname, replaceFile, similarity.similarity]);
+    res.json(addFiles);
+  }
 }
 
 
@@ -52,7 +53,7 @@ function asyncWrap(f) {
       .catch((e) => next(e || new Error()));
   };
 }
-app.use(express.json());
+
 app.get('/fileConts', asyncWrap(getFileConts));
 app.post('/upload', single, asyncWrap(upload));
 app.listen(8080, () => { console.log('listening on 8080'); });

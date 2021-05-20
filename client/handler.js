@@ -1,54 +1,21 @@
 /* eslint-disable no-unused-vars */
 
-async function displayData() {
-  try {
-    const response = await fetch('/fileConts');
-    if (response.ok) {
-      const obj = await response.json();
-      console.log(obj);
-    } else {
-      console.log(response);
-    }
-  } catch (e) {
-    console.log(e);
+async function displayReport() {
+  const response = await fetch('/fileConts');
+  let obj;
+  if (response.ok) {
+    obj = await response.json();
+  } else {
+    console.log('Error');
+  }
+  const getTable = document.querySelector('#tableCont');
+  for (let i = 0; i < obj.length; i++) {
+    const data = obj[i];
+    const row = getTable.insertRow(i + 1);
+    row.insertCell(0).textContent = data.file_name;
+    row.insertCell(1).textContent = data.file_similarity;
   }
 }
-
-function onDrop(event) {
-  event.preventDefault();
-  uploadFile(event.dataTransfer.files);
-  // document.querySelector('#drop-zone').
-  // CHANGE TEXT WHEN U DROP FILE
-}
-
-function btnOnClick() {
-  document.querySelector('#drop-zone-input').click();
-}
-
-// function onClick(event) {
-//   event.preventDefault();
-//   uploadFile();
-// uploadFile(event.dataTransfer.files);
-// this function retrieves the content from the click button
-// const fileToLoad = document.querySelector('#drop-zone-input').files[0];
-// const fileToLoad = event.target.files[0];
-// const fileReader = new FileReader();
-// const text = document.querySelector('#file-content');
-// fileReader.onload = function (event) {
-//   text.innerHTML = event.target.result;
-// };
-
-// fileReader.readAsText(fileToLoad);
-// fileReader.addEventListener('load', (e) => {
-//   const readCont = e.target.result;
-//   console.log('File Content: ', readCont);
-//   // document.querySelector('#file-content').innerHTML = readCont;
-//   const x = document.querySelector('#drop-zone-input').value;
-//   document.querySelector('#file-content').innerHTML = x;
-// });
-// fileReader.readAsText(fileToLoad);
-// FIX ISSUE WHEN U CLICK ON (MULTIPLE) FILE(S)
-// }
 
 async function uploadFile(files) {
   for (let i = 0; i < files.length; i++) {
@@ -61,7 +28,6 @@ async function uploadFile(files) {
 
     try {
       const response = await fetch('/upload', opts);
-      console.log(response);
       if (response.ok) {
         const obj = await response.json();
         console.log(obj);
@@ -73,3 +39,20 @@ async function uploadFile(files) {
     }
   }
 }
+
+function onDrop(event) {
+  event.preventDefault();
+  uploadFile(event.dataTransfer.files);
+}
+
+window.addEventListener('load', () => {
+  const input = document.querySelector('#drop-zone');
+  input.addEventListener('dragover', (e) => {
+    e.preventDefault();
+  });
+
+  input.addEventListener('drop', (e) => {
+    onDrop(e);
+  });
+  displayReport();
+});
