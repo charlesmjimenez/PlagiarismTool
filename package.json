@@ -6,9 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "setuppg": "createdb plagiarismtool || psql plagiarismtool < myDB.sql && config.js",
-    "setup": "npx nodemon server.js"
+    "start": "npx nodemon server.js",
+    "setup": "createdb plagiarismtool && psql plagiarismtool < myDB.sql"
   },
   "repository": {
     "type": "git",
